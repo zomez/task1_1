@@ -28,13 +28,11 @@ def copy_file(file):
 def parser(path_xml):
     """Функция парсинга xml файла"""
     if os.path.isfile(path_xml):
-        data = []
         tree = ET.parse(path_xml)
         for element in tree.iter('file'):
             if element.attrib.get('source_path') and element.attrib.get('destination_path') and element.attrib.get('file_name'):
                 print(f'Find: {element.attrib}')
                 copy_file(element.attrib)
-                data.append(element.attrib)
     else:
         print(f'File {path_xml} not found')
 
